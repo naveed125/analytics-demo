@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+    - "80:80"
+    volumes:
+    - ./src:/var/www
+    links:
+    - db
+    environment:
+    - DEPLOYMENT=development
+
+  db:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+    volumes:
+    - ./data/mysql:/var/lib/mysql

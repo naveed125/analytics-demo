@@ -1,0 +1,4 @@
+/src/vendor
+.idea/
+.env
+data/
