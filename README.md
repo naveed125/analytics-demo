@@ -3,10 +3,10 @@ A demo app showing analytics implementation using Segment and Google Analytics i
 
 # Development Environment Setup
 1. Copy src/.env.local to src/.env
-2. docker-compose up -d --force-recreate
-3. docker exec -it `docker ps -q -f name=web` composer install
+2. Run `docker-compose up -d --force-recreate`
+3. Run `docker exec -it $(docker ps -q -f name=web) composer install`
 
-# Check if its all good
+# Quick Test
 ```
 % curl -i localhost
 HTTP/1.1 200 OK
@@ -21,4 +21,3 @@ Date: Sat, 01 Jan 2022 22:23:01 GMT
 
 Analytics Demo App running on local.
 ```
-

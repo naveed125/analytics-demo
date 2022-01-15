@@ -13,6 +13,8 @@
 |
 */
 
+use App\Http\Controllers\UserController;
+
 $router->get('/', function () use ($router) {
     return config("app.name") . ' running on ' . config('app.env') . '.' . PHP_EOL;
 });
@@ -23,4 +25,15 @@ $router->group(['prefix' => 'api'], function() use ($router) {
     $router->get('/action/{param}', function ($param) use ($controller) {
         return $controller->action($param);
     });
+});
+
+$router->group(['prefix' => 'user'], function() use ($router) {
+
+    $router->get('/', 'UserController@index');
+    $router->post('/', 'UserController@index');
+
+    $router->get('/dashboard', [
+        'middleware' => 'auth',
+        'uses' => 'UserController@dashboard'
+    ]);
 });
