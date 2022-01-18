@@ -31,6 +31,7 @@
                            id="username"
                            name="username"
                            placeholder="Username"
+                           value="{{ $username }}"
                            required>
                     <div class="invalid-feedback">
                         Your username is required.
