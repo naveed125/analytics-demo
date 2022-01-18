@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class Token extends Model
+class Session extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -18,7 +18,7 @@ class Token extends Model
      */
     protected $fillable = [
         'user_id',
-        'hash',
+        'token',
         'expires'
     ];
 
@@ -28,6 +28,6 @@ class Token extends Model
      * @var array
      */
     protected $hidden = [
-        'hash',
+        'token',
     ];
 }

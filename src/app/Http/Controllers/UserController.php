@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Session;
 use App\Models\Token;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -66,14 +67,14 @@ class UserController extends BaseController
             ]);
         }
 
-        $token = new Token([
+        $session = new Session([
             'user_id' => $user->id,
-            'hash' => uniqid("", true),
+            'token' => uniqid("", true),
             'expires' => Carbon::now()->addDays(7)
         ]);
-        $token->save();
+        $session->save();
 
-        return redirect("/user/dashboard?token={$token->hash}");
+        return redirect("/user/dashboard?token={$session->token}");
     }
 
     /**
