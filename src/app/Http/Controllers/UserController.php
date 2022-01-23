@@ -52,19 +52,19 @@ class UserController extends BaseController
 
         $user = User::where('username', $username)->first();
         if (!$user) {
-            Log::info("CREATING NEW USER: {$username}");
             $user = new User([
                 'username' => $username,
                 'password' => Hash::make($password)
             ]);
             $user->save();
         }
-
-        if (Hash::check($user->password, $password)) {
-            return view('user.index', [
-                'username' => $username,
-                'errors' => 'Invalid password'
-            ]);
+        else {
+            if (!Hash::check($password, $user->password)) {
+                return view('user.index', [
+                    'username' => $username,
+                    'errors' => 'Invalid password'
+                ]);
+            }
         }
 
         $session = new Session([
