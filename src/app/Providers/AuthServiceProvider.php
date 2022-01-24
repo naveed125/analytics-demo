@@ -42,21 +42,17 @@ class AuthServiceProvider extends ServiceProvider
                 ])->first();
 
                 if (!$session) {
-                    Log::info("INVALID TOKEN: {$token}");
                     return null;
                 }
 
                 $user = User::find($session->user_id);
                 if (!$user) {
-                    Log::info("INVALID USER ID: {$token->user_id}");
                     return null;
                 }
 
-                Log::info("AUTHENTICATED USER:{$user->id} WITH TOKEN:{$token}");
                 return $user;
             }
             else {
-                Log::info("NOT AUTHENTICATED" . $request->method() . $request->path());
                 return null;
             }
         });

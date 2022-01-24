@@ -14,6 +14,7 @@
 */
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BulletinController;
 
 $router->get('/', function () use ($router) {
     return config("app.name") . ' running on ' . config('app.env') . '.' . PHP_EOL;
@@ -32,8 +33,9 @@ $router->group(['prefix' => 'user'], function() use ($router) {
     $router->get('/', 'UserController@index');
     $router->post('/', 'UserController@index');
 
-    $router->get('/dashboard', [
-        'middleware' => 'auth',
-        'uses' => 'UserController@dashboard'
-    ]);
+});
+
+$router->group(['prefix' => 'bulletin', 'middleware' => 'auth'], function() use ($router) {
+    $router->get('/', 'BulletinController@index');
+    $router->post('/', 'BulletinController@index');
 });

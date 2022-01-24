@@ -74,18 +74,7 @@ class UserController extends BaseController
         ]);
         $session->save();
 
-        return redirect("/user/dashboard?token={$session->token}");
+        return redirect("/bulletin?token={$session->token}");
     }
 
-    /**
-     * @param Request $request
-     * @return View
-     */
-    public function dashboard(Request $request) {
-        // TODO REAL DASHBOARD COMES HERE
-        return view('user.index', [
-            'username' => 'Guest',
-            'errors' => null
-        ]);
-    }
 }
