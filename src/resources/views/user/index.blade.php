@@ -47,7 +47,7 @@
                        name="password"
                        placeholder="********">
                 <div class="invalid-feedback">
-                    Please enter a valid email address for shipping updates.
+                    Password is invalid.
                 </div>
             </div>
 

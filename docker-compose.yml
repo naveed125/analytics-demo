@@ -4,7 +4,7 @@ services:
     build: .
     restart: always
     ports:
-    - "80:80"
+    - "6125:80"
     volumes:
     - ./src:/var/www
     links:

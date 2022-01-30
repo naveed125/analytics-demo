@@ -62,7 +62,7 @@ class UserController extends BaseController
             // Track user registration using Segment -> GA4
             // https://segment.com/docs/connections/destinations/catalog/actions-google-analytics-4/#sign-up
             Segment::track([
-                'event' => 'Sign Up',
+                'event' => 'Signed Up',
                 'userId' => $user->id,
                 'properties' => [
                     'username' => $user->username
@@ -88,7 +88,7 @@ class UserController extends BaseController
         // Track user login using Segment -> GA4
         // https://segment.com/docs/connections/destinations/catalog/actions-google-analytics-4/#login
         Segment::track([
-            'event' => 'Login',
+            'event' => 'Signed In',
             'userId' => $user->id,
             'properties' => [
                 'username' => $user->username
