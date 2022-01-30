@@ -25,6 +25,12 @@ class UserController extends BaseController
         $username = uniqid("user");
 
         if ($request->method() == 'GET') {
+
+            // Track simple page view
+            Segment::track([
+                'event' => 'Page View'
+            ]);
+
             return view('user.index', [
                 'username' => $username,
                 'errors' => null
@@ -59,7 +65,7 @@ class UserController extends BaseController
             ]);
             $user->save();
 
-            // Track user registration using Segment -> GA4
+            // Track user registration using Segment
             // https://segment.com/docs/connections/destinations/catalog/actions-google-analytics-4/#sign-up
             Segment::track([
                 'event' => 'Signed Up',
@@ -85,7 +91,7 @@ class UserController extends BaseController
         ]);
         $session->save();
 
-        // Track user login using Segment -> GA4
+        // Track user login using Segment
         // https://segment.com/docs/connections/destinations/catalog/actions-google-analytics-4/#login
         Segment::track([
             'event' => 'Signed In',
