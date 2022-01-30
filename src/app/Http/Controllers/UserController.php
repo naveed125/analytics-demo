@@ -28,7 +28,8 @@ class UserController extends BaseController
 
             // Track simple page view
             Segment::track([
-                'event' => 'Page View'
+                'event' => 'Page View',
+                'anonymousId' => $username
             ]);
 
             return view('user.index', [
