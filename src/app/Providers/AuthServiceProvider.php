@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
+use Segment\Segment;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -50,11 +51,16 @@ class AuthServiceProvider extends ServiceProvider
                     return null;
                 }
 
+                Segment::identify([
+                    'userId' => $user->id,
+                    'traits' => [
+                        'username' => $user->username
+                    ]
+                ]);
                 return $user;
             }
-            else {
-                return null;
-            }
+
+            return null;
         });
     }
 }

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\View\View;
+use Segment\Segment;
 
 class BulletinController extends BaseController
 {
@@ -38,11 +39,25 @@ class BulletinController extends BaseController
                     return $item[0];
                 })->implode(" ");
             }
-            if (!$errors) {
+
+            $content = trim($request->input('message'));
+            if (!$errors && $content) {
+                
                 (new Message([
                     "user_id" => Auth::id(),
-                    "content" => trim($request->input('message')),
+                    "content" => $content,
                 ]))->save();
+
+                // Track custom event of posting a message
+                // https://segment.com/docs/connections/destinations/catalog/actions-google-analytics-4/#custom-event
+                Segment::track([
+                    'event' => 'Custom Event',
+                    'userId' => $user->id,
+                    'eventName' => 'message_posted',
+                    'properties' => [
+                        'length' => strlen($content)
+                    ]
+                ]);
             }
         }
 

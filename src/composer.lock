@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43a8a6e444590514bb4b9f6a02112d0f",
+    "content-hash": "b9143350764b06af57a4f8e9ac3f1d8b",
     "packages": [
         {
             "name": "brick/math",
@@ -2776,6 +2776,61 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "segmentio/analytics-php",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/segmentio/analytics-php.git",
+                "reference": "0048caedf87b9019f2588aadd1d8dd7a6d9c5abb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/segmentio/analytics-php/zipball/0048caedf87b9019f2588aadd1d8dd7a6d9c5abb",
+                "reference": "0048caedf87b9019f2588aadd1d8dd7a6d9c5abb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "overtrue/phplint": "^1.1",
+                "phpunit/phpunit": "~9.0",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "bin": [
+                "bin/analytics"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/Segment.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Segment.io <friends@segment.com>",
+                    "homepage": "https://segment.com/"
+                }
+            ],
+            "description": "Segment Analytics PHP Library",
+            "homepage": "https://segment.com/libraries/php",
+            "keywords": [
+                "analytics",
+                "analytics.js",
+                "segment",
+                "segmentio"
+            ],
+            "support": {
+                "issues": "https://github.com/segmentio/analytics-php/issues",
+                "source": "https://github.com/segmentio/analytics-php/tree/2.0.0"
+            },
+            "time": "2021-07-16T16:29:21+00:00"
         },
         {
             "name": "symfony/console",
@@ -7088,7 +7143,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0"
+        "php": "^7.3|^8.0",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"

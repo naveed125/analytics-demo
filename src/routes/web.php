@@ -17,15 +17,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BulletinController;
 
 $router->get('/', function () use ($router) {
-    return config("app.name") . ' running on ' . config('app.env') . '.' . PHP_EOL;
-});
-
-$router->group(['prefix' => 'api'], function() use ($router) {
-    $controller = new \App\Http\Controllers\ApiController();
-
-    $router->get('/action/{param}', function ($param) use ($controller) {
-        return $controller->action($param);
-    });
+    return redirect("/user");
 });
 
 $router->group(['prefix' => 'user'], function() use ($router) {

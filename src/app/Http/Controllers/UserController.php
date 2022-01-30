@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\View\View;
+use Segment\Segment;
 
 class UserController extends BaseController
 {
@@ -57,6 +58,16 @@ class UserController extends BaseController
                 'password' => Hash::make($password)
             ]);
             $user->save();
+
+            // Track user registration using Segment -> GA4
+            // https://segment.com/docs/connections/destinations/catalog/actions-google-analytics-4/#sign-up
+            Segment::track([
+                'event' => 'Sign Up',
+                'userId' => $user->id,
+                'properties' => [
+                    'username' => $user->username
+                ]
+            ]);
         }
         else {
             if (!Hash::check($password, $user->password)) {
@@ -73,6 +84,16 @@ class UserController extends BaseController
             'expires' => Carbon::now()->addDays(7)
         ]);
         $session->save();
+
+        // Track user login using Segment -> GA4
+        // https://segment.com/docs/connections/destinations/catalog/actions-google-analytics-4/#login
+        Segment::track([
+            'event' => 'Login',
+            'userId' => $user->id,
+            'properties' => [
+                'username' => $user->username
+            ]
+        ]);
 
         return redirect("/bulletin?token={$session->token}");
     }
