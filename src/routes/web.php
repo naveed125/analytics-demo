@@ -20,6 +20,10 @@ $router->get('/', function () use ($router) {
     return redirect("/user");
 });
 
+$router->get('/status', function () use ($router) {
+    return config("app.name") . ' running on ' . config('app.env') . '.' . PHP_EOL;
+});
+
 $router->group(['prefix' => 'user'], function() use ($router) {
 
     $router->get('/', 'UserController@index');
